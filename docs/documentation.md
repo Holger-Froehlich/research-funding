@@ -87,6 +87,28 @@ Across layers, the core logic is:
 
 Together, this creates a navigational system that makes tasks, information pathways, and individual proposal strategy transparent and manageable.
 
+### 2.2.1 Process perspective: from research idea to call decision (professor) and decision enablement (advisory)
+
+The three-layer model (roles → tools → funding landscape) can be understood as a navigation system that connects two processes:
+
+**Professor process (user journey)**
+1. **Research idea:** a topic, question, or application need emerges.
+2. **Strategic framing:** clarify what the project is *for* (e.g., team building, infrastructure, transfer/prototyping, networking, publication profile) and what constraints apply (time, resources, partners).
+3. **Seek advisory support:** bring the idea to advisory services to reduce search costs and avoid misalignment with program logics.
+4. **Call / program decision:** select a plausible funding pathway and decide whether to pursue a specific call.
+
+**Advisory process (service process)**
+1. **Capture the case:** structure the request (goals, maturity/TRL proxy, constraints, strategic intent).
+2. **Analyze and triangulate information:** use appropriate information tools (databases, contact points, evidence on competitiveness/success, partner search).
+3. **Structure institutional knowledge:** curate and map funding options in a consistent landscape view (macro orientation + micro positioning).
+4. **Enable decisions:** present a transparent set of plausible funding lines, trade-offs, and next steps (what to check, who to contact, how to proceed).
+
+**Where they meet**
+The key interface is the moment the professor *seeks advisory support* and the advisory service *enables the call decision*. The dashboard supports exactly this interface by:
+- providing macro orientation (FMAC) before program selection,
+- enabling micro-level exploration of plausible funding lines (FMIC) with interpretable metrics and strategic tags,
+- and linking advisory roles and information tools to repeatable workflows.
+
 ### 2.3 Two views of the funding landscape: macro (FMAC) and micro (FMIC)
 
 To support both strategic orientation and concrete program selection, the tool splits the funding landscape into:
