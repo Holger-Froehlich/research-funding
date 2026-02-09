@@ -7,13 +7,13 @@ This document complements the repository `README.md` by focusing on how the Shin
 
 ## Table of Contents
 - [1. Introduction (how to read this documentation)](#1-introduction-how-to-read-this-documentation)
-- [2. Rationale & advisory model](#2-rationale--advisory-model)
+- [2. Rationale & advisory model](#2-rationale-advisory-model)
 - [3. Non-technical user guide (Excel-driven configuration)](#3-non-technical-user-guide-excel-driven-configuration)
 - [4. Excel data contract (workbook reference)](#4-excel-data-contract-workbook-reference)
 - [5. Extending the dashboard via Excel (recipes)](#5-extending-the-dashboard-via-excel-recipes)
-- [6. Technical reference (developers / maintainers)](#6-technical-reference-developers--maintainers)
-- [7. Troubleshooting & FAQ](#7-troubleshooting--faq)
-
+- [6. Technical reference (developers / maintainers)](#6-technical-reference-developers-maintainers)
+- [7. Troubleshooting & FAQ](#7-troubleshooting-faq)
+## 
 ## 1. Introduction (how to read this documentation)
 
 This documentation describes the **Research Funding** repository and its Excel-driven Shiny dashboard for **research funding advisory**.
@@ -67,17 +67,17 @@ This documentation describes the current MVP behavior of the tool and its Excel-
 
 Research funding advisory work is characterized by a highly fragmented funding landscape, heterogeneous program logics, and a growing number of information channels. In practice, this creates avoidable complexity: advisors must simultaneously (a) clarify what they are doing in a given advisory situation, (b) decide how to obtain and assess the relevant information, and (c) navigate where in the funding system a project idea can realistically be positioned.
 
-This repository addresses that problem by operationalizing a **three-layer advisory model** and providing a dashboard that makes the model usable and portable across institutions. :contentReference[oaicite:6]{index=6} :contentReference[oaicite:7]{index=7}
+This repository addresses that problem by operationalizing a **three-layer advisory model** and providing a dashboard that makes the model usable and portable across institutions.
 
 ### 2.2 The three-layer model (roles → tools → funding landscape)
 
 The model structures funding advisory work into three layers that form a coherent chain of impact:
 
-1. **Roles (What we do):** roles describe the core modes of advisory work (e.g., scouting, fit analysis, curation, strategic advice, consortium development, quality assurance, horizon scanning). Roles provide orientation for team organization and for choosing an adequate advisory stance in a given case. :contentReference[oaicite:8]{index=8} :contentReference[oaicite:9]{index=9}
+1. **Roles (What we do):** roles describe the core modes of advisory work (e.g., scouting, fit analysis, curation, strategic advice, consortium development, quality assurance, horizon scanning). Roles provide orientation for team organization and for choosing an adequate advisory stance in a given case.
 
-2. **Information tools (How we do it):** tools are the methodical bridge between advisory roles and the funding world. They provide the information access, analyses, networks, and curated knowledge required to perform roles professionally (e.g., call databases, success-rate/TRL evidence, partner search and networks, compliance resources, internal wikis/dashboards). :contentReference[oaicite:10]{index=10} :contentReference[oaicite:11]{index=11}
+2. **Information tools (How we do it):** tools are the methodical bridge between advisory roles and the funding world. They provide the information access, analyses, networks, and curated knowledge required to perform roles professionally (e.g., call databases, success-rate/TRL evidence, partner search and networks, compliance resources, internal wikis/dashboards).
 
-3. **Funding landscape (Where we advise towards):** the funding landscape is the orientation space. It helps answer “where should this project idea go” by placing funding levels and lines in a strategic context—e.g., suitability for early career researchers, infrastructure, industry collaboration, internationalization, or specific maturity levels (TRL ranges). :contentReference[oaicite:12]{index=12} :contentReference[oaicite:13]{index=13}
+3. **Funding landscape (Where we advise towards):** the funding landscape is the orientation space. It helps answer “where should this project idea go” by placing funding levels and lines in a strategic context—e.g., suitability for early career researchers, infrastructure, industry collaboration, internationalization, or specific maturity levels (TRL ranges).
 
 Across layers, the core logic is:
 
@@ -85,29 +85,29 @@ Across layers, the core logic is:
 - Tools determine *how* advisors can access and structure the necessary information.
 - The funding landscape clarifies *where* to position a project and which pathways are strategically plausible.
 
-Together, this creates a navigational system that makes tasks, information pathways, and individual proposal strategy transparent and manageable. :contentReference[oaicite:14]{index=14} :contentReference[oaicite:15]{index=15}
+Together, this creates a navigational system that makes tasks, information pathways, and individual proposal strategy transparent and manageable.
 
 ### 2.3 Two views of the funding landscape: macro (FMAC) and micro (FMIC)
 
 To support both strategic orientation and concrete program selection, the tool splits the funding landscape into:
 
-- **FMAC (macro overview):** a synoptic, coarse-grained view that explains the *systemic contribution* of central funding levels (e.g., state, federal, DFG, EU, foundations) and links them to strategic functions in the university-of-applied-sciences context. It is intended to provide “strategic overall orientation” before moving to specific calls or programs. :contentReference[oaicite:16]{index=16} :contentReference[oaicite:17]{index=17}
+- **FMAC (macro overview):** a synoptic, coarse-grained view that explains the *systemic contribution* of central funding levels (e.g., state, federal, DFG, EU, foundations) and links them to strategic functions in the university-of-applied-sciences context. It is intended to provide “strategic overall orientation” before moving to specific calls or programs.
 
-- **FMIC (micro navigation / plot):** a structured view of concrete funding lines positioned by meaningful characteristics (e.g., TRL proxy, competitiveness, success indicators, strategic fit tags). This supports matching a project idea to plausible funding lines and exploring trade-offs interactively. :contentReference[oaicite:18]{index=18} :contentReference[oaicite:19]{index=19}
+- **FMIC (micro navigation / plot):** a structured view of concrete funding lines positioned by meaningful characteristics (e.g., TRL proxy, competitiveness, success indicators, strategic fit tags). This supports matching a project idea to plausible funding lines and exploring trade-offs interactively.
 
 On the micro level (FMIC), **strategic tags** enable cohort-based exploration of funding lines (e.g., *newly appointed professors*, *infrastructure*, *transfer*), strengthening transparent segmentation and strategic matching in advisory conversations.
 
 ### 2.4 Portability via a data contract (Excel as single source of truth)
 
-A central design principle is **portability**. The dashboard is driven by a documented Excel workbook used as a **single source of truth**. The app reads the workbook at startup and validates its schema and references. This allows institutions to adapt the tool by maintaining their own Excel file (roles, tools, mappings, texts, funding lines, metrics, tags) without modifying the code. :contentReference[oaicite:20]{index=20} :contentReference[oaicite:21]{index=21}
+A central design principle is **portability**. The dashboard is driven by a documented Excel workbook used as a **single source of truth**. The app reads the workbook at startup and validates its schema and references. This allows institutions to adapt the tool by maintaining their own Excel file (roles, tools, mappings, texts, funding lines, metrics, tags) without modifying the code.
 
-**Markdown-first content:** textual fields in the Excel workbook are intended to be authored in Markdown and rendered accordingly in the dashboard. :contentReference[oaicite:22]{index=22}
+**Markdown-first content:** textual fields in the Excel workbook are intended to be authored in Markdown and rendered accordingly in the dashboard.
 
 ### 2.5 What this tool is (and is not)
 
-This tool is designed as a **structuring and navigation instrument** for advisory practice: it makes advisory roles explicit, connects them to concrete information pathways, and provides strategic orientation in the funding landscape (macro + micro). :contentReference[oaicite:23]{index=23} :contentReference[oaicite:24]{index=24}
+This tool is designed as a **structuring and navigation instrument** for advisory practice: it makes advisory roles explicit, connects them to concrete information pathways, and provides strategic orientation in the funding landscape (macro + micro).
 
-It is **not** an automated recommendation engine: the MVP explicitly avoids “black-box scoring” and focuses on transparent filtering, visualization, and structured interpretation. :contentReference[oaicite:25]{index=25}
+It is **not** an automated recommendation engine: the MVP explicitly avoids “black-box scoring” and focuses on transparent filtering, visualization, and structured interpretation.
 
 ## 3. Non-technical user guide (Excel-driven configuration)
 
@@ -295,8 +295,6 @@ Rules:
 
 Tags are used for legend/filter behavior in the plot.
 
----
-
 ### 4.3 Sheet reference (required columns and meaning)
 
 #### 4.3.1 `Roles`
@@ -314,8 +312,6 @@ Tags are used for legend/filter behavior in the plot.
 - missing/duplicate `R_ID`
 - icon filename does not match a file in `app/www/role_icons/`
 
----
-
 #### 4.3.2 `Tools`
 **Required columns**
 - `T_ID` (string): unique tool identifier
@@ -326,8 +322,6 @@ Tags are used for legend/filter behavior in the plot.
 
 **Creates in UI**
 - Tool entries/cards that become visible once mapped via `Paths`.
-
----
 
 #### 4.3.3 `Paths`
 **Required columns**
@@ -342,8 +336,6 @@ Tags are used for legend/filter behavior in the plot.
 **Rule**
 - A tool row in `Tools` will not appear in the dashboard unless it is linked via `Paths`.
 
----
-
 #### 4.3.4 `Examples`
 **Required columns**
 - `E_ID` (string): unique example identifier
@@ -353,8 +345,6 @@ Tags are used for legend/filter behavior in the plot.
 
 **Creates in UI**
 - Example blocks shown for the corresponding role–tool path.
-
----
 
 #### 4.3.5 `Fmac` (Funding landscape macro)
 **Required columns (minimum schema)**
@@ -376,8 +366,6 @@ Tags are used for legend/filter behavior in the plot.
 
 **Common pitfalls**
 - inconsistent spelling of `Ebene` across workbook → content may end up under unexpected level labels
-
----
 
 #### 4.3.6 `Fmic` (Funding landscape micro)
 **Required columns (minimum schema)**
@@ -407,8 +395,6 @@ Any additional `XY_*` column you add becomes selectable for X/Y plotting.
 - missing values for the currently selected X/Y metrics (points will drop out)
 - inconsistent tag spelling (creates duplicated categories)
 
----
-
 #### 4.3.7 `Initial_information`
 **Required columns**
 - `Panel_ID` (string): identifier of a panel/section in the dashboard
@@ -416,8 +402,6 @@ Any additional `XY_*` column you add becomes selectable for X/Y plotting.
 
 **Creates in UI**
 - Initial/help content for panels.
-
----
 
 ### 4.4 Minimal compliance checklist (for new workbooks)
 
@@ -453,8 +437,6 @@ A new role tab appears with your texts rendered.
 - Duplicate or missing `R_ID`
 - Icon filename does not match a file in `app/www/role_icons/`
 
----
-
 ### 5.2 Recipe: Add a new tool and assign it to a role (via `Paths`)
 
 **Goal**  
@@ -478,8 +460,6 @@ The tool appears under the selected role.
 - Tool not visible unless linked in `Paths`
 - Typos in `T_ID` / `R_ID`
 
----
-
 ### 5.3 Recipe: Add examples to a role–tool path
 
 **Goal**  
@@ -493,8 +473,6 @@ In `Examples`, add new row(s) with:
 
 **Expected UI effect**  
 Examples appear in the corresponding role/tool context.
-
----
 
 ### 5.4 Recipe: Add a funding line (FMIC) to the micro plot
 
@@ -516,8 +494,6 @@ The new funding line becomes available in the plot and appears as a point when t
 - Missing numeric values for the currently selected X/Y metrics (the point will not display)
 - Mixed text and numbers in `XY_*` columns
 
----
-
 ### 5.5 Recipe: Add a new selectable plot metric (`XY_*` columns)
 
 **Goal**  
@@ -532,8 +508,6 @@ The metric becomes selectable in the X/Y dropdowns.
 **Common pitfalls**
 - Non-numeric values prevent conversion
 - Inconsistent number formatting
-
----
 
 ### 5.6 Recipe: Use strategic tags to create advisory cohorts (filter/legend categories)
 
@@ -560,8 +534,6 @@ Tags become **legend/filter categories**. Users can focus on tagged subsets of f
 - Inconsistent spelling creates near-duplicate tags (e.g., `Infrastruktur` vs `Infra`)
 - Missing commas or trailing spaces
 
----
-
 ### 5.7 Recipe: Inspect additional information via hover (tooltips)
 
 **Goal**  
@@ -576,8 +548,6 @@ When users **hover** over a plot point, they can read additional information abo
 **Common pitfalls**
 - Very long text becomes hard to scan; prefer short structure
 - Missing `Begruendung` reduces interpretability of the plot
-
----
 
 ### 5.8 Recipe: Update FMAC macro overview texts and sources
 
@@ -603,9 +573,34 @@ This chapter documents the technical architecture of the Shiny dashboard, its da
 
 - **Shiny app entry point:** `app/app.R`
 - **Default data file (shipped example):** `app/data/foerder_dashboard.xlsx`
-- **App startup (from repository root):** shiny::runApp("app")
+- **App startup (from repository root):**
+
+```r
+shiny::runApp("app")
+```
 
 The app is designed to be **Excel-driven**: UI content and many structural elements are derived from the workbook at runtime.
+
+### 6.1.1 Path resolution and app directory detection (APP_DIR)
+
+The app uses a robust directory detection helper (`find_app_dir()`) to locate the deployable `app/` unit.
+
+**Supported start modes**
+- Running from inside `app/` (working directory is `.../app`)
+- Running from the repository root via `shiny::runApp("app")`
+
+At startup the app prints:
+
+
+```
+APP_DIR: <absolute-path-to-research-funding/app>
+```
+
+All internal file references use `APP_DIR` as the anchor, including:
+- sourcing modules from `APP_DIR/R/*.R`
+- default Excel path: `APP_DIR/data/foerder_dashboard.xlsx`
+
+This design keeps relative paths stable across machines and reduces “file not found” issues when the app is started from different working directories.
 
 ### 6.2 Code layout
 
@@ -630,6 +625,24 @@ The app is designed to be **Excel-driven**: UI content and many structural eleme
 - `app/scripts/funding-landscape-plot-standalone.R`  
     Standalone rendering of the micro plot outside of Shiny (useful for generating an HTML plot artifact from the same Excel data contract).
     
+### 6.2.1 Runtime data objects and meta information
+
+`load_excel()` returns a list of data frames using canonical keys:
+
+- `roles`
+- `tools`
+- `paths`
+- `examples`
+- `fmac`
+- `fmic`
+- `initial_info`
+
+Additionally, the loader attaches metadata to the list via `attr(out, "meta")`, including:
+- normalized file path
+- sheets present in the file
+- sheet-to-key mapping used (alias resolution)
+
+Maintainers can use this meta information to debug workbook issues (e.g., unexpected sheet names).
 
 ### 6.3 Data pipeline (load → validate → transform → render)
 
@@ -664,6 +677,47 @@ At runtime, the app follows a consistent pipeline:
     - micro plot from `Fmic` and selected X/Y metrics.
         
 
+### 6.3.1 Execution flow (call graph light)
+
+The runtime control flow is driven by two load events:
+
+1) **Startup load (default workbook, once)**
+- `load_excel(default_path)`
+- `validate_all(d)`
+- store data and validation output in reactive values
+
+2) **Hot-swap load (user upload, on demand)**
+- `load_excel(input$in_excel$datapath)`
+- `validate_all(d)`
+- update reactive values and show a notification
+
+In pseudo-code:
+
+```r
+# once at startup
+d <- load_excel(default_path)
+v <- validate_all(d)
+data_rv(d); val_rv(v)
+
+# whenever a new file is uploaded
+d <- load_excel(uploaded_path)
+v <- validate_all(d)
+data_rv(d); val_rv(v)
+```
+
+All UI rendering is downstream of `data_rv()` and therefore updates automatically after a successful upload (hot-swap).
+
+
+### 6.3.2 Hot-swap mechanics and failure behavior
+
+The Excel upload (`fileInput("in_excel", ...)`) supports **switching workbooks while the app is running**.
+
+**Behavior**
+- On successful load+validation: the dashboard is re-rendered immediately from the new workbook.
+- On error: the app shows an error notification and keeps the previously loaded dataset active (no “partial state” update).
+
+This provides a safe workflow for live sessions (e.g., switching between target-group-specific workbooks) without restarting the app.
+
 ### 6.4 Validation philosophy and failure modes
 
 The app distinguishes between:
@@ -675,6 +729,31 @@ The app distinguishes between:
 
 Maintainer recommendation: treat warnings as “data contract debt” and fix them in the Excel workbook.
 
+### 6.4.1 Validation rules catalogue (explicit)
+
+Validation is implemented in `validate_all()` and follows a strict “stop on schema/type issues, warn on reference issues” approach.
+
+**Hard-stop validation (errors)**
+- Missing required mapped sheets (any of: roles/tools/paths/examples/fmac/fmic/initial_info)
+- Missing required columns per canonical sheet key:
+  - `roles`: `R_ID`, `Rolle`, `Leitfrage`, `Methode`
+  - `tools`: `T_ID`, `Werkzeugtyp`, `Informationsart`, `Zweck`, `Werkzeugtyp_Beispiele`
+  - `paths`: `Path_ID`, `R_ID`, `T_ID`
+  - `examples`: `E_ID`, `Path_ID`, `E_Order`, `Example_Text`
+  - `fmac`: `Fmac_ID`, `Ebene`, `Akteure`, `Strategische_Bedeutung`
+  - `fmic`: `Fmic_ID`, `Ebene`, `Foerderlinie`, `Strategische_Eignung`, `Begruendung`
+  - `initial_info`: `Panel_ID`, `Text`
+- FMIC must provide at least **two** `XY_*` metric columns
+- Any `XY_*` column must be numeric or fully convertible; otherwise validation stops with example offending values
+
+**Foreign-key integrity (warnings)**
+- `Paths.R_ID` not found in `Roles.R_ID`
+- `Paths.T_ID` not found in `Tools.T_ID`
+- `Examples.Path_ID` not found in `Paths.Path_ID`
+- Optional consistency warning: `Fmic.Ebene` values missing in `Fmac.Ebene`
+
+Warnings degrade specific UI parts (missing tools/examples or missing macro coverage) but do not necessarily prevent the app from running.
+
 ### 6.5 Extension points (developer view)
 
 Even though the app is Excel-driven, maintainers may extend behavior in code:
@@ -685,6 +764,31 @@ Even though the app is Excel-driven, maintainers may extend behavior in code:
     
 - **Changing the data contract:** update validation rules in `validate.R` and loader mapping in `load_data.R`. Document changes in Chapter 4.
     
+### 6.5.1 FMIC plot specifics (tags, hover, NA-policy)
+
+The FMIC plot (`plot_fmic()`) is designed as an interpretable navigation view:
+
+**X/Y metrics**
+- Axis choices are based on columns starting with `XY_`.
+- Axis titles strip the `XY_` prefix for readability.
+
+**NA policy (visibility rule)**
+- A funding line is plotted only if it has valid numeric values for *both* selected X and Y metrics.
+- Non-numeric but convertible values are coerced to numeric; truly non-convertible values are blocked by validation.
+
+**Strategic tags as filter/legend categories**
+- Tags are read from `Strategische_Eignung` (comma-separated).
+- For each distinct tag, the plot creates a legend entry (initially `legendonly`) that controls a dedicated `legendgroup`.
+- This enables cohort-based exploration (e.g., “Neuberufene”, “Infrastruktur”, “Transfer”) without changing code.
+
+**Hover tooltips (deep context)**
+- Hover text is rendered as HTML and includes:
+  - program line title
+  - funding level
+  - strategic tags
+  - rationale text (`Begruendung`), wrapped and converted to `<br>` line breaks
+
+This design intentionally combines *position* (metrics) with *interpretation* (rationale and tags) to support advisory conversations.
 
 ### 6.6 Reproducible environment (renv)
 
@@ -732,8 +836,6 @@ A: Common causes:
 **Q: I see “lockfile is already up to date”. Is that good?**  
 A: Yes. It means your `renv.lock` matches the currently detected project dependencies.
 
----
-
 ### 7.2 App start and working directory
 
 **Q: The app does not start, or cannot find files.**  
@@ -747,8 +849,6 @@ If you use RStudio, open `research-funding.Rproj` to ensure correct project cont
 
 **Q: How do I verify which directory the app is using?**  
 A: At startup the app prints `APP_DIR: ...`. Ensure it points to `.../research-funding/app`.
-
----
 
 ### 7.3 Excel data issues (schema, types, references)
 
@@ -803,8 +903,6 @@ A: Check:
 **Q: My strategic tags create duplicates in the legend (e.g., “Transfer” and “transfer”).**  
 A: Tags are treated as strings. Use consistent spelling and capitalization; remove leading/trailing spaces.
 
----
-
 ### 7.4 Markdown rendering and text formatting
 
 **Q: My text shows raw Markdown symbols instead of formatting.**  
@@ -820,8 +918,6 @@ A: Ensure:
 **Q: Links in FMAC sources do not work or look broken.**  
 A: Use standard Markdown links: `[Title](https://example.org)`. Avoid pasting malformed URLs with spaces.
 
----
-
 ### 7.5 Performance and stability
 
 **Q: RStudio shows “Unable to establish connection with R session …”**  
@@ -835,8 +931,6 @@ A: This can happen when working in synchronized folders (e.g., OneDrive/SharePoi
 **Q: The app feels slow after changing the workbook.**  
 A: Large workbooks and heavy plots can slow down re-rendering. Keep text fields concise and avoid unnecessary sheet/row duplication.
 
----
-
 ### 7.6 “Is this workbook ready to use?”
 
 **Q: Can I use the shipped Excel file operationally as-is?**  
@@ -848,8 +942,6 @@ A: Treat it as an **example workbook**. You should review and adapt it for your 
     
 - correctness of metric values and interpretations.
     
-
----
 
 ### 7.7 Getting help
 
