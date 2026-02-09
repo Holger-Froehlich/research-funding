@@ -1,6 +1,13 @@
+# License
+
+This repository uses a dual licensing scheme:
+
+## 1. Source Code (folder: app/)
+Licensed under the **MIT License**:
+
 MIT License
 
-Copyright (c) 2026 Holger-Froehlich & Jana Holland-Cunz
+Copyright (c) 2026 Holger L. Froehlich & Jana Holland-Cunz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +26,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## 2. Documentation and Text Files (README.md, documentation.md, CITATION.cff) and text in app/data/foerder_dashboard.xlsx
+Licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license:  
+
+You are free to:
+- **Share** — copy and redistribute the material in any medium or format  
+- **Adapt** — remix, transform, and build upon the material for any purpose, even commercially.  
+
+Under the following terms:
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.  
+- **No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.  
+
+Full license text: https://creativecommons.org/licenses/by/4.0/
