@@ -101,9 +101,7 @@ research-funding/
   README.md
   LICENSE
   CITATION.cff
-  .Rprofile
   research-funding.Rproj
-  .gitignore
   renv.lock
   renv/
     activate.R
