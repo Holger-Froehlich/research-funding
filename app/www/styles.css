@@ -1,0 +1,422 @@
+/* assets/styles.css */
+/* Consolidated + cleaned (no duplicates), with:
+   - clearer box/tab borders
+   - two independent scroll columns (page itself does not scroll)
+   - fixed logo top-right + credits bottom-right
+   - consistent panel typography + KV layout + cards
+*/
+
+/* top header bar */
+.skin-blue .main-header .navbar { background-color: #A00516 !important; }
+.skin-blue .main-header .logo   { background-color: #7A081F !important; }
+
+/* box top border accent */
+.box.box-primary { border-top-color: #F34065 !important; }
+.box.box-info    { border-top-color: #F34065 !important; }
+
+
+/* ---- Global: disable page scroll (columns scroll instead) ---- */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* shinydashboard content area shouldn't create its own page scroll */
+.content-wrapper, .right-side {
+  overflow: hidden;
+}
+
+/* ---- Two independent scroll columns ---- */
+/* Header height ~ 50px; adjust if needed (e.g., 55px) */
+.col-scroll {
+  height: calc(100vh - 50px);
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* ---- Boxes (shinydashboard panels) borders clearer ---- */
+.box {
+  border-top-width: 3px;            /* keeps status color bar */
+  border: 1px solid #cfcfcf;        /* clearer border overall */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.box .box-header {
+  border-bottom: 1px solid #d9d9d9;
+}
+
+/* ---- Tabs clearer ---- */
+.nav-tabs {
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.nav-tabs > li > a {
+  border: 1px solid transparent;
+  margin-right: 4px;
+  border-radius: 6px 6px 0 0;
+  padding: 6px 10px;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border: 1px solid #cfcfcf;
+  border-bottom-color: transparent;
+  background: #fff;
+  font-weight: 700;
+}
+
+.nav-tabs > li > a:hover {
+  border: 1px solid #cfcfcf;
+  background: #fafafa;
+}
+
+/* ---- Panel typography ---- */
+.panel-title {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.panel-subtitle {
+  margin: 12px 0 6px 0;
+  font-weight: 700;
+}
+
+.panel-text {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.panel-text p { margin: 0 0 12px 0; }
+.panel-text ul { margin: 0 0 12px 18px; }
+.panel-text h3, .panel-text h4 { margin: 12px 0 8px 0; }
+
+/* Better markdown layout inside panels */
+.panel-text p {
+  margin: 0 0 12px 0;
+}
+
+.panel-text h1, .panel-text h2, .panel-text h3, .panel-text h4 {
+  margin: 14px 0 8px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.panel-text h1 { font-size: 20px; }
+.panel-text h2 { font-size: 18px; }
+.panel-text h3 { font-size: 16px; }
+.panel-text h4 { font-size: 14px; }
+
+.panel-text ul, .panel-text ol {
+  margin: 0 0 12px 20px;
+}
+
+.panel-text li {
+  margin: 0 0 6px 0;
+}
+
+.panel-text a {
+  text-decoration: underline;
+}
+
+.panel-text blockquote {
+  margin: 0 0 12px 0;
+  padding: 8px 10px;
+  border-left: 3px solid #cfcfcf;
+  background: #fafafa;
+}
+
+.panel-text code {
+  padding: 1px 4px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background: #f7f7f7;
+}
+
+.panel-text pre {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #f7f7f7;
+  overflow-x: auto;
+}
+
+/* Markdown tables (commonmark) – panels + toggle bodies */
+.panel-text table,
+.tool-card-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 12px 0;
+  font-size: 14px;
+}
+
+.panel-text th,
+.panel-text td,
+.tool-card-body th,
+.tool-card-body td {
+  border: 1px solid #d9d9d9;
+  padding: 6px 8px;
+  vertical-align: top;
+}
+
+.panel-text th,
+.tool-card-body th {
+  background: #f7f7f7;
+  font-weight: 700;
+}
+
+/* optional zebra rows */
+.panel-text tbody tr:nth-child(even),
+.tool-card-body tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ---- Role title + icon (inline) ---- */
+.role-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.role-icon-inline {
+  height: 28px;
+  width: 28px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+
+/* ---- Key-Value layout used in R/T/Fmac panels ---- */
+.kv {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6px 12px;
+  align-items: start;
+  margin: 6px 0 10px 0;
+}
+
+.kv-label {
+  font-weight: 700;
+  color: #333;
+}
+
+.kv-value {
+  color: #222;
+}
+
+/* ---- Cards (Tools + Examples) ---- */
+.card {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.card-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* ---- Fixed logo top-right ---- */
+.app-logo-topright {
+  position: fixed;
+  top: 2px;          /* keep it below the very top edge */
+  right: 12px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.92);
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.app-logo-topright img {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+/* ---- Fixed credits bottom-right ---- */
+.app-credits {
+  position: fixed;
+  right: 12px;
+  bottom: 10px;
+  font-size: 12px;
+  color: #777;
+  background: rgba(255,255,255,0.92);
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  z-index: 9999;
+}
+
+/* Inline collapse for tools */
+.tool-details {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.tool-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px;
+}
+
+.tool-summary::-webkit-details-marker { display: none; }
+
+.tool-summary .card-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.tool-summary-hint {
+  font-size: 12px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* when open: remove double border between summary and body */
+.tool-details[open] .tool-summary {
+  border-bottom: 1px solid #eee;
+}
+
+/* body padding already in .card; keep consistent */
+.tool-card-body {
+  margin: 0;
+  border: 0;
+  border-radius: 0 0 6px 6px;
+}
+
+
+/* Chevron rechts im Summary */
+.tool-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px;
+  position: relative;
+  padding-right: 34px; /* Platz für Chevron */
+}
+
+.tool-summary::-webkit-details-marker { display: none; }
+
+/* Chevron (CSS) */
+.tool-summary::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #555;
+  border-bottom: 2px solid #555;
+  transform: translateY(-50%) rotate(45deg); /* closed: points down-right */
+  transition: transform 0.15s ease-in-out;
+}
+
+/* Open state: rotate chevron */
+.tool-details[open] > .tool-summary::after {
+  transform: translateY(-50%) rotate(-135deg); /* open: points up-right */
+}
+
+/* Optional: remove hint text */
+.tool-summary-hint { display: none; }
+
+/* Fmac section toggle */
+.fmac-toggle {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.fmac-toggle summary {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: 700;
+  background: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+}
+
+.fmac-toggle[open] summary {
+  background: #e0e0e0;
+}
+
+.fmac-toggle::-webkit-details-marker {
+  display: none; /* Hide default marker */
+}
+
+/* Optional: Custom arrow styling */
+.fmac-toggle summary::after {
+  content: "▼";
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.fmac-toggle[open] summary::after {
+  content: "▲"; /* Rotate the arrow */
+}
+
+/* FORCE table borders everywhere inside dashboard body */
+.content-wrapper table {
+  width: 100%;
+  border-collapse: collapse !important;
+  margin: 8px 0 12px 0;
+  font-size: 14px;
+}
+
+.content-wrapper th,
+.content-wrapper td {
+  border: 1px solid #bfbfbf !important;
+  padding: 6px 8px;
+  vertical-align: top;
+}
+
+.content-wrapper th {
+  background: #f2f2f2;
+  font-weight: 700;
+}
+
+/* optional zebra */
+.content-wrapper tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ---- Table polish: first column bold + sticky header + sensible widths ---- */
+
+/* first column bold (header + body) */
+.content-wrapper table th:first-child,
+.content-wrapper table td:first-child {
+  font-weight: 700;
+}
+
+/* sticky header */
+.content-wrapper table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* keep header background visible while sticky */
+.content-wrapper table thead th {
+  background: #f2f2f2;
+}
+
+/* prevent huge cells from blowing up layout */
+.content-wrapper table th,
+.content-wrapper table td {
+  word-break: break-word;
+}
+
+/* optional: make first column a bit narrower */
+.content-wrapper table th:first-child,
+.content-wrapper table td:first-child {
+  width: 22%;
+}
+
+/* optional: improve readability in dense tables */
+.content-wrapper table td {
+  line-height: 1.25;
+}
+
