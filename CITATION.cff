@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Research Funding Advisory Dashboard
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Holger L.
+    family-names: Fröhlich
+    email: froehlich@haw-bw.de
+    name-particle: Holger
+    affiliation: >-
+      Hochschulen für Angewandte Wissenschaften
+      Baden-Württemberg e.V.
+  - given-names: Jana
+    family-names: Holland-Cunz
+    email: holland-cunz@haw-bw.de
+    affiliation: >-
+      Hochschulen für Angewandte Wissenschaften
+      Baden-Württemberg e.V.
+repository-code: 'https://github.com/Holger-Froehlich/research-funding'
+abstract: >-
+  An Excel-driven Shiny dashboard for research funding
+  advisory. It operationalizes a three-layer advisory model
+  (roles, information tools, funding landscape) and supports
+  interactive exploration of funding lines via selectable
+  metrics, strategic tags, and hover tooltips. The Excel
+  workbook acts as a portable data contract that allows
+  institutions to adapt content without code changes.
+keywords:
+  - '  research funding'
+  - funding advisory
+  - knowledge management
+  - decision support
+  - role-based workflow
+  - Shiny
+  - dashboard
+  - Excel-driven
+  - data contract
+  - interactive visualization
+license: MIT
+date-released: '2026-02-09'
