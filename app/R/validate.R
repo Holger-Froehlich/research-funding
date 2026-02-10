@@ -14,7 +14,7 @@ validate_required_sheets <- function(data) {
 validate_required_columns <- function(data) {
   schema <- list(
     roles = c("R_ID", "Rolle", "Leitfrage", "Methode"),
-    tools = c("T_ID", "Werkzeugtyp", "Informationsart", "Zweck", "Werkzeugtyp_Beispiele"),
+    tools = c("T_ID", "Werkzeugkategorie", "Informationsart", "Zweck", "Typische Werkzeuge"),
     paths = c("Path_ID", "R_ID", "T_ID"),
     examples = c("E_ID", "Path_ID", "E_Order", "Example_Text"),
     fmac = c("Fmac_ID", "Ebene", "Akteure", "Strategische_Bedeutung"),

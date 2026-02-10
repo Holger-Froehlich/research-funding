@@ -48,7 +48,7 @@ render_initial_panel <- function(initial_info, panel_id) {
   
   # FMAC overview: icon inline at the start of the first line
   icon <- htmltools::tags$img(
-    src   = "Fernrohr.png",
+    src   = "/assets/Fernrohr.png",
     class = "role-icon-inline",
     alt   = "FMAC Überblick",
     # force same size as role icons + baseline alignment (first text line)
@@ -82,7 +82,7 @@ render_role_panel <- function(roles_df, selected_role_id) {
     
     if (!is.na(icon_file) && nzchar(icon_file)) {
       # robust: encode special chars + absolute path
-      icon_url <- paste0("role_icons/", utils::URLencode(icon_file, reserved = TRUE))
+      icon_url <- paste0("/assets/role_icons/", utils::URLencode(icon_file, reserved = TRUE))
       #message("ICON DEBUG url=", icon_url)
       
       icon_tag <- htmltools::tags$img(
@@ -122,7 +122,7 @@ render_tool_panel <- function(tools_df) {
   }
   
   # erwartete Spalten (wie vereinbart)
-  cols <- c("Informationsart", "Werkzeugtyp", "Zweck", "Werkzeugtyp_Beispiele")
+  cols <- c("Informationsart", "Werkzeugkategorie", "Zweck", "Typische Werkzeuge")
   missing <- setdiff(cols, names(tools_df))
   if (length(missing) > 0) {
     return(htmltools::tagList(
@@ -136,16 +136,16 @@ render_tool_panel <- function(tools_df) {
   cards <- lapply(seq_len(nrow(tools_df)), function(i) {
     t <- tools_df[i, , drop = FALSE]
     
-    informationsart <- as.character(t$Informationsart[[1]])
-    werkzeugtyp     <- as.character(t$Werkzeugtyp[[1]])
-    zweck           <- as.character(t$Zweck[[1]])
-    beispiele       <- as.character(t$Werkzeugtyp_Beispiele[[1]])
+    informationsart   <- as.character(t$Informationsart[[1]])
+    werkzeugkategorie <- as.character(t$Werkzeugkategorie[[1]])
+    zweck             <- as.character(t$Zweck[[1]])
+    beispiele         <- as.character(t[["Typische Werkzeuge"]][[1]])
     
     # Header-Zeile (immer sichtbar)
     header_line <- paste0(
       if (!is.na(informationsart) && nzchar(informationsart)) informationsart else "—",
       " · ",
-      if (!is.na(werkzeugtyp) && nzchar(werkzeugtyp)) werkzeugtyp else "—"
+      if (!is.na(werkzeugkategorie) && nzchar(werkzeugkategorie)) werkzeugkategorie else "—"
     )
     
     htmltools::tags$details(
@@ -161,9 +161,9 @@ render_tool_panel <- function(tools_df) {
           class = "panel-text",
           kv_block(
             kv_row("Informationsart", htmltools::HTML(htmltools::htmlEscape(informationsart))),
-            kv_row("Werkzeugtyp",     htmltools::HTML(htmltools::htmlEscape(werkzeugtyp))),
+            kv_row("Werkzeugkategorie",     htmltools::HTML(htmltools::htmlEscape(werkzeugkategorie))),
             kv_row("Zweck",           render_markdown_to_html(zweck)),
-            kv_row("Werkzeugtyp_Beispiele", render_markdown_to_html(beispiele))
+            kv_row("Typische Werkzeuge", render_markdown_to_html(beispiele))
           )
         )
       )
