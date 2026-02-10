@@ -2,34 +2,36 @@
 library(shiny)
 library(shinydashboard)
 
-# --- Robust app directory detection
-find_app_dir <- function() {
+# --- Robust project root detection (works with .Rproj)
+find_project_root <- function() {
   wd <- normalizePath(getwd(), winslash = "/", mustWork = TRUE)
+  if (basename(wd) == "app") return(dirname(wd))
   
-  # Case 1: already running inside app/
-  if (basename(wd) == "app" && file.exists(file.path(wd, "app.R"))) return(wd)
-  
-  # Case 2: started from project root with shiny::runApp("app")
-  if (dir.exists(file.path(wd, "app")) && file.exists(file.path(wd, "app", "app.R"))) {
-    return(file.path(wd, "app"))
+  cur <- wd
+  for (i in 1:10) {
+    rproj <- list.files(cur, pattern = "\\.Rproj$", full.names = TRUE)
+    if (length(rproj) > 0) return(cur)
+    parent <- dirname(cur)
+    if (parent == cur) break
+    cur <- parent
   }
-  
-  # Fallback: current wd
   wd
 }
 
-APP_DIR <- find_app_dir()
-cat("APP_DIR:", APP_DIR, "\n")
+PROJECT_ROOT <- find_project_root()
+cat("PROJECT_ROOT:", PROJECT_ROOT, "\n")
 
-# --- Source core modules (absolute paths inside app/R)
-source(file.path(APP_DIR, "R", "load_data.R"))
-source(file.path(APP_DIR, "R", "validate.R"))
-source(file.path(APP_DIR, "R", "transforms.R"))
-source(file.path(APP_DIR, "R", "plot_fmic.R"))
-source(file.path(APP_DIR, "R", "render_panels.R"))
+# Serve assets/ via /assets/...
+addResourcePath("assets", file.path(PROJECT_ROOT, "assets"))
 
-EXCEL_PATH_DEFAULT <- file.path(APP_DIR, "data", "foerder_dashboard.xlsx")
+# --- Source core modules (absolute paths)
+source(file.path(PROJECT_ROOT, "R", "load_data.R"))
+source(file.path(PROJECT_ROOT, "R", "validate.R"))
+source(file.path(PROJECT_ROOT, "R", "transforms.R"))
+source(file.path(PROJECT_ROOT, "R", "plot_fmic.R"))
+source(file.path(PROJECT_ROOT, "R", "render_panels.R"))
 
+EXCEL_PATH_DEFAULT <- file.path(PROJECT_ROOT, "data", "foerder_dashboard.xlsx")
 
 # --- UI
 ui <- dashboardPage(
@@ -56,7 +58,7 @@ ui <- dashboardPage(
   ),
   
   dashboardBody(
-    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "assets/styles.css")),
     
     fluidRow(
       # --- LEFT: three panels stacked
@@ -116,12 +118,12 @@ ui <- dashboardPage(
     
     tags$div(
       class = "app-logo-topright",
-      tags$img(src = "logo.png", alt = "Logo")
+      tags$img(src = "assets/logo.png", alt = "Logo")
     ),
     
     tags$div(
       class = "app-credits",
-      "Credits/Citation: … (Text kommt aus Spec/Institution, später finalisieren)"
+      "Credits: Holger L. Fröhlich & Jana Holland-Cunz (2026)"
     )
   )
 )
