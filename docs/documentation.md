@@ -173,7 +173,7 @@ Many text fields in the workbook are intended to be written in **Markdown**. Thi
 Use Markdown in the following fields:
 
 - **Roles**: `Leitfrage`, `Methode`
-- **Tools**: `Zweck`, `Werkzeugtyp_Beispiele`
+- **Tools**: `Zweck`, `Typische Werkzeuge`
 - **Examples**: `Example_Text`
 - **Fmac**: `Einleitung`, `Organisation`, `Strategische.Bedeutung`, `Einstiegspfade`, `Quellen.und.Referenzen`
 - **Fmic**: `Begruendung`
@@ -337,10 +337,10 @@ Tags are used for legend/filter behavior in the plot.
 #### 4.3.2 `Tools`
 **Required columns**
 - `T_ID` (string): unique tool identifier
-- `Werkzeugtyp` (string): tool category/type
+- `Werkzeugkategorie` (string): tool category/type
 - `Informationsart` (string): information type (classification)
 - `Zweck` (markdown text): purpose/why the tool is used
-- `Werkzeugtyp_Beispiele` (markdown text): examples / how-to notes
+- `Typische Werkzeuge` (markdown text): examples / how-to notes
 
 **Creates in UI**
 - Tool entries/cards that become visible once mapped via `Paths`.
@@ -466,9 +466,9 @@ Make a new tool visible under a specific role.
 
 **Excel change**  
 1) In `Tools`, add a new row with a new unique `T_ID` and fill:
-- `Werkzeugtyp`, `Informationsart`
+- `Werkzeugkategorie`, `Informationsart`
 - `Zweck` (Markdown)
-- `Werkzeugtyp_Beispiele` (Markdown)
+- `Typische Werkzeuge` (Markdown)
 
 2) In `Paths`, add a new row linking:
 - `R_ID` (existing role)
@@ -759,7 +759,7 @@ Validation is implemented in `validate_all()` and follows a strict “stop on sc
 - Missing required mapped sheets (any of: roles/tools/paths/examples/fmac/fmic/initial_info)
 - Missing required columns per canonical sheet key:
   - `roles`: `R_ID`, `Rolle`, `Leitfrage`, `Methode`
-  - `tools`: `T_ID`, `Werkzeugtyp`, `Informationsart`, `Zweck`, `Werkzeugtyp_Beispiele`
+  - `tools`: `T_ID`, `Werkzeugkategorie`, `Informationsart`, `Zweck`, `Typische Werkzeuge`
   - `paths`: `Path_ID`, `R_ID`, `T_ID`
   - `examples`: `E_ID`, `Path_ID`, `E_Order`, `Example_Text`
   - `fmac`: `Fmac_ID`, `Ebene`, `Akteure`, `Strategische_Bedeutung`
