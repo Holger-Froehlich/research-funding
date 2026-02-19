@@ -19,19 +19,23 @@ find_project_root <- function() {
 }
 
 PROJECT_ROOT <- find_project_root()
-cat("PROJECT_ROOT:", PROJECT_ROOT, "\n")
+APP_ROOT <- file.path(PROJECT_ROOT, "app")
 
-# Serve assets/ via /assets/...
-addResourcePath("assets", file.path(PROJECT_ROOT, "assets"))
+cat("PROJECT_ROOT:", PROJECT_ROOT, "\n")
+cat("APP_ROOT:", APP_ROOT, "\n")
+
+# NOTE:
+# - Shiny serves files in app/www automatically (no addResourcePath needed).
+# - Therefore reference files directly: "styles.css", "logo.png", "role_icons/.."
 
 # --- Source core modules (absolute paths)
-source(file.path(PROJECT_ROOT, "R", "load_data.R"))
-source(file.path(PROJECT_ROOT, "R", "validate.R"))
-source(file.path(PROJECT_ROOT, "R", "transforms.R"))
-source(file.path(PROJECT_ROOT, "R", "plot_fmic.R"))
-source(file.path(PROJECT_ROOT, "R", "render_panels.R"))
+source(file.path(APP_ROOT, "R", "load_data.R"))
+source(file.path(APP_ROOT, "R", "validate.R"))
+source(file.path(APP_ROOT, "R", "transforms.R"))
+source(file.path(APP_ROOT, "R", "plot_fmic.R"))
+source(file.path(APP_ROOT, "R", "render_panels.R"))
 
-EXCEL_PATH_DEFAULT <- file.path(PROJECT_ROOT, "data", "foerder_dashboard.xlsx")
+EXCEL_PATH_DEFAULT <- file.path(APP_ROOT, "data", "foerder_dashboard.xlsx")
 
 # --- UI
 ui <- dashboardPage(
@@ -58,7 +62,8 @@ ui <- dashboardPage(
   ),
   
   dashboardBody(
-    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "assets/styles.css")),
+    # www/styles.css
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
     
     fluidRow(
       # --- LEFT: three panels stacked
@@ -118,7 +123,8 @@ ui <- dashboardPage(
     
     tags$div(
       class = "app-logo-topright",
-      tags$img(src = "assets/logo.png", alt = "Logo")
+      # www/logo.png
+      tags$img(src = "logo.png", alt = "Logo")
     ),
     
     tags$div(
@@ -182,8 +188,10 @@ server <- function(input, output, session) {
   
   output$out_loaded_file <- renderUI({
     x <- loaded_rv()
-    tags$div(style = "font-size:12px; color:#777;",
-             paste0("Aktiv: ", x$src, " | ", x$name, " | ", format(x$ts, "%H:%M:%S")))
+    tags$div(
+      style = "font-size:12px; color:#777;",
+      paste0("Aktiv: ", x$src, " | ", x$name, " | ", format(x$ts, "%H:%M:%S"))
+    )
   })
   
   # --- Role tabs (dynamic)
